@@ -4,6 +4,23 @@ This is a calculator that works over _unions of intervals_ rather than just real
 numbers. It is an implementation of [Interval Union
 Arithmetic](https://www.ime.usp.br/~montanhe/unions.pdf).
 
+An interval `[a, b]` represents the set of all numbers between and including a
+and b. An interval union: `[a, b] U [c, d]` is a disjoint set of intervals.
+
+Interval *union* arithmetic is an extension of regular interval arithmetic that
+is vastly superior, mostly because it remains closed while supporting division
+by intervals containing zero:
+
+```
+➤ 2 / [-2, 1]
+[-∞, -1] U [2, +∞]
+```
+
+The interesting thing about interval union arithmetic is the inclusion property,
+which means that if you pick any real number from every input union and compute
+the same expression over the reals, the result is guaranteed to be in the output
+union.
+
 You can use it to represent uncertainty:
 
     ➤ 50 * (10 + [-1, 1])
