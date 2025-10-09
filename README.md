@@ -1,6 +1,10 @@
 # Interval Calculator
 
+<div align="center">
+
 [🖩 Try the calculator here 🖩](https://victorpoughon.github.io/interval-calculator/)
+
+</div>
 
 This is a calculator that works over _unions of intervals_ rather than just real
 numbers. It is an implementation of [Interval Union
