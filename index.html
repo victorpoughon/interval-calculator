@@ -60,14 +60,14 @@
           <h2 id="syntax">Syntax</h2>
           <table>
           <colgroup>
-          <col style="width: 10%" />
-          <col style="width: 32%" />
-          <col style="width: 56%" />
+          <col style="width: 13%" />
+          <col style="width: 34%" />
+          <col style="width: 51%" />
           </colgroup>
           <thead>
           <tr class="header">
           <th style="text-align: right;"></th>
-          <th>Syntax <!--                 --></th>
+          <th>Syntax <!--                      --></th>
           <th>Examples</th>
           </tr>
           </thead>
@@ -83,9 +83,29 @@
           <td><code>[0, 1] U [5, 6]</code></td>
           </tr>
           <tr class="odd">
-          <td style="text-align: right;">Arithmetic</td>
-          <td><code>+ - * / ^</code></td>
-          <td><code>➤ 10 / ([-2, 1] * 2)</code><br><code>[-∞, -2.5] U [5, +∞]</code></td>
+          <td style="text-align: right;">Addition</td>
+          <td><code>A + B</code></td>
+          <td><code>➤ [90, 100] + [-2, 2]</code><br><code>[88, 102]</code></td>
+          </tr>
+          <tr class="even">
+          <td style="text-align: right;">Subtraction</td>
+          <td><code>A - B</code></td>
+          <td><code>➤ [14, 16] - [8, 12]</code><br><code>[2, 8]</code></td>
+          </tr>
+          <tr class="odd">
+          <td style="text-align: right;">Multiplication</td>
+          <td><code>A * B</code></td>
+          <td><code>➤ [-5, 10] * [2, 4]</code><br><code>[-20, 40]</code></td>
+          </tr>
+          <tr class="even">
+          <td style="text-align: right;">Division</td>
+          <td><code>A / B</code></td>
+          <td><code>➤ [2, 4] / [-1, 2]</code><br><code>[-∞, -2] U [1, +∞]</code></td>
+          </tr>
+          <tr class="odd">
+          <td style="text-align: right;">Exponent</td>
+          <td><code>A ^ B</code></td>
+          <td><code>➤ [2, 3] ^ [-2, 3]</code><br><code>[0.1111, 27]</code></td>
           </tr>
           <tr class="even">
           <td style="text-align: right;">Functions</td>
@@ -99,12 +119,32 @@
           </tr>
           </tbody>
           </table>
+          <p>Note: you can input intervals with the bracket syntax:
+          <code>[1, 2]</code>, or bare numbers without
+          brackets: <code>3.14</code>. Bare numbers are intepreted as a
+          narrow interval, i.e. <code>[3.14, 3.14]</code> (with
+          subtleties related to full precision mode). This enables bare
+          numbers and intervals to be mixed naturally:</p>
+          <pre><code>➤ 1.55 + [-0.002, 0.002]
+[1.548, 1.552]</code></pre>
+          <p>A surprising consequence of the calculator grammar is that
+          intervals can be nested and you can write things like:</p>
+          <pre><code>➤ [0, [0, 100]]
+[0, 100]</code></pre>
+          <p>This is because all numbers, including those inside an
+          interval bracket which define a bound, are interpreted as
+          intervals. When nesting two intervals as above, an interval
+          used as an interval bound is the same as taking its upper
+          bound. This design choice enables using arithmetic on interval
+          bounds themselves:</p>
+          <pre><code>➤ [0, cos(2*pi)]
+[0, 1]</code></pre>
           <h2 id="supported-functions">Supported Functions</h2>
           <table>
           <colgroup>
           <col style="width: 17%" />
-          <col style="width: 27%" />
-          <col style="width: 55%" />
+          <col style="width: 25%" />
+          <col style="width: 57%" />
           </colgroup>
           <thead>
           <tr class="header">
@@ -225,7 +265,8 @@
           decimal representation but where neither bounds are equal to
           it</li>
           <li>Output numbers are displayed with all available decimal
-          digits</li>
+          digits (using <a
+          href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toString"><code>Number.toString()</code></a>)</li>
           </ul>
           <p>When full precision mode is disabled:</p>
           <ul>
@@ -234,7 +275,8 @@
           to the IEEE 754 value closest to the input decimal
           representation</li>
           <li>Output numbers are displayed with a maximum of 4 decimal
-          digits</li>
+          digits (using <a
+          href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toPrecision"><code>Number.toPrecision()</code></a>)</li>
           </ul>
           <h2 id="bugs">Bugs</h2>
           <p>While I’ve been very careful, I’m sure there are still some
