@@ -1,0 +1,25 @@
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+thead th {
+    border-bottom: 2px solid var(--moredark);
+    padding: 0.5rem 0.75rem;
+    text-align: center !important;
+}
+
+thead th:first-child { text-align: right; }
+
+tbody td {
+    border-bottom: 1px dotted grey;
+    padding: 0.25rem 1.5rem;
+}
+
+tbody tr:last-child td {
+    border-bottom: 2px solid var(--moredark);
+}
+
+tbody td:first-child { text-align: right; }
+
+col { width: unset!important }

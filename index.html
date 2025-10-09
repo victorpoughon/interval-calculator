@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/favicon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Interval Calculator</title>
+    </head>
+    <body>
+        <header>
+            <h1>Interval Calculator</h1>
+            <div style="text-align: right">
+                — by <a href="https://victorpoughon.fr">Victor Poughon</a>
+                |
+                <a href="https://github.com/victorpoughon/interval-calculator"> GitHub</a>
+            </div>
+        </header>
+
+        <main>
+            <div id="input-box">
+                <label>Input: </label><input type="text" id="main-input" placeholder="" />
+                <button id="enter-button">➤</button>
+            </div>
+            <div id="main-display"></div>
+            <div id="toolbar">
+                <span
+                    ><label
+                        ><input type="checkbox" id="full-precision" /> Full precision</label
+                    ></span
+                >
+                <span><button id="clear-button">Clear</button></span>
+            </div>
+        </main>
+
+        <article>
+          <h2 id="what-is-this">What is this?</h2>
+          <p>This is a calculator that works over <em>unions of
+          intervals</em> rather than just real numbers. It is an
+          implementation of <a
+          href="https://www.ime.usp.br/~montanhe/unions.pdf">Interval
+          Union Arithmetic</a>.</p>
+          <p>You can use it to represent uncertainty:</p>
+          <pre><code>➤ 50 * (10 + [-1, 1])
+[450, 550]</code></pre>
+          <p>You can also compute more complex interval expressions,
+          using the interval union operator <code>U</code>:</p>
+          <pre><code>➤ ( [5, 10] U [15, 16] ) / [10, 100]
+[0.05, 1.6]</code></pre>
+          <p>Operations can result in disjoint unions of intervals:</p>
+          <pre><code>➤ 1 / [-2, 1]
+[-∞, -0.5] U [1, +∞]
+➤ tan([pi/3, 2*pi/3])
+[-∞, -1.732] U [1.732, +∞]</code></pre>
+          <p>In full precision mode, you can use it as a regular
+          calculator, and obtain interval results that are guaranteed to
+          contain the true value, despite floating point precision
+          issues:</p>
+          <pre><code>➤ 0.1 + 0.2
+[0.29999999999999993, 0.3000000000000001]</code></pre>
+          <h2 id="syntax">Syntax</h2>
+          <table>
+          <colgroup>
+          <col style="width: 10%" />
+          <col style="width: 32%" />
+          <col style="width: 56%" />
+          </colgroup>
+          <thead>
+          <tr class="header">
+          <th style="text-align: right;"></th>
+          <th>Syntax <!--                 --></th>
+          <th>Examples</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="odd">
+          <td style="text-align: right;">Interval</td>
+          <td><code>[a, b]</code></td>
+          <td><code>[0.5, 0.6]</code></td>
+          </tr>
+          <tr class="even">
+          <td style="text-align: right;">Union</td>
+          <td><code>[a, b] U [c, d]</code></td>
+          <td><code>[0, 1] U [5, 6]</code></td>
+          </tr>
+          <tr class="odd">
+          <td style="text-align: right;">Arithmetic</td>
+          <td><code>+ - * / ^</code></td>
+          <td><code>➤ 10 / ([-2, 1] * 2)</code><br><code>[-∞, -2.5] U [5, +∞]</code></td>
+          </tr>
+          <tr class="even">
+          <td style="text-align: right;">Functions</td>
+          <td><code>function(...)</code></td>
+          <td><code>➤ log10([1, 10000])</code><br><code>[0, 4]</code></td>
+          </tr>
+          <tr class="odd">
+          <td style="text-align: right;">Constants</td>
+          <td><code>name</code></td>
+          <td><code>➤➤ pi</code><br><code>[3.1415926535897927, 3.1415926535897936]</code></td>
+          </tr>
+          </tbody>
+          </table>
+          <h2 id="supported-functions">Supported Functions</h2>
+          <table>
+          <colgroup>
+          <col style="width: 17%" />
+          <col style="width: 27%" />
+          <col style="width: 55%" />
+          </colgroup>
+          <thead>
+          <tr class="header">
+          <th style="text-align: right;"></th>
+          <th style="text-align: left;">Function</th>
+          <th style="text-align: left;">Examples</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="odd">
+          <td style="text-align: right;">Constants</td>
+          <td style="text-align: left;"><code>inf</code>,
+          <code>∞</code>,<br><code>pi</code>, <code>e</code></td>
+          <td
+          style="text-align: left;"><code>➤ [-inf, 0] * [-inf, 0]</code><br><code>[0, +∞]</code></td>
+          </tr>
+          <tr class="even">
+          <td style="text-align: right;">Lower bound</td>
+          <td style="text-align: left;"><code>lo(A)</code></td>
+          <td
+          style="text-align: left;"><code>➤ lo([1, 2])</code><br><code>[1, 1]</code></td>
+          </tr>
+          <tr class="odd">
+          <td style="text-align: right;">Upper bound</td>
+          <td style="text-align: left;"><code>hi(A)</code></td>
+          <td
+          style="text-align: left;"><code>➤ hi([1, 2])</code><br><code>[2, 2]</code></td>
+          </tr>
+          <tr class="even">
+          <td style="text-align: right;">Hull</td>
+          <td style="text-align: left;"><code>hull(A)</code></td>
+          <td
+          style="text-align: left;"><code>➤ hull([1, 2] U [99, 100])</code><br><code>[1, 100]</code></td>
+          </tr>
+          <tr class="odd">
+          <td style="text-align: right;">Absolute value</td>
+          <td style="text-align: left;"><code>abs(A)</code></td>
+          <td
+          style="text-align: left;"><code>➤ abs([-10, 5])</code><br><code>[0, 10]</code></td>
+          </tr>
+          <tr class="even">
+          <td style="text-align: right;">Square root</td>
+          <td style="text-align: left;"><code>sqrt(A)</code></td>
+          <td
+          style="text-align: left;"><code>➤ sqrt([9, 49])</code><br><code>[3, 7]</code></td>
+          </tr>
+          <tr class="odd">
+          <td style="text-align: right;">Natural logarithm</td>
+          <td style="text-align: left;"><code>log(A)</code></td>
+          <td
+          style="text-align: left;"><code>➤ log([0, 1])</code><br><code>[-∞, 0]</code></td>
+          </tr>
+          <tr class="even">
+          <td style="text-align: right;">Logarithm base 2</td>
+          <td style="text-align: left;"><code>log2(A)</code></td>
+          <td
+          style="text-align: left;"><code>➤ log2([64, 1024])</code><br><code>[6, 10]</code></td>
+          </tr>
+          <tr class="odd">
+          <td style="text-align: right;">Logarithm base 10</td>
+          <td style="text-align: left;"><code>log10(A)</code></td>
+          <td
+          style="text-align: left;"><code>➤ log10([0.0001, 1])</code><br><code>[-4, 0]</code></td>
+          </tr>
+          <tr class="even">
+          <td style="text-align: right;">Exponential</td>
+          <td style="text-align: left;"><code>exp(A)</code></td>
+          <td
+          style="text-align: left;"><code>➤ exp([-∞, 0] U [1, 2])</code><br><code>[0, 1] U [2.718, 7.389]</code></td>
+          </tr>
+          <tr class="odd">
+          <td style="text-align: right;">Cosine</td>
+          <td style="text-align: left;"><code>cos(A)</code></td>
+          <td
+          style="text-align: left;"><code>➤ cos([pi/3, pi])</code><br><code>[-1, 0.5]</code></td>
+          </tr>
+          <tr class="even">
+          <td style="text-align: right;">Sine</td>
+          <td style="text-align: left;"><code>sin(A)</code></td>
+          <td
+          style="text-align: left;"><code>➤ sin([pi/6, 5*pi/6])</code><br><code>[0.5, 1]</code></td>
+          </tr>
+          <tr class="odd">
+          <td style="text-align: right;">Tangent</td>
+          <td style="text-align: left;"><code>tan(A)</code></td>
+          <td
+          style="text-align: left;"><code>➤ tan([pi/3, 2*pi/3])</code><br><code>[-∞, -1.732] U [1.732, +∞]</code></td>
+          </tr>
+          <tr class="even">
+          <td style="text-align: right;">Minimum</td>
+          <td style="text-align: left;"><code>min(A, B)</code></td>
+          <td
+          style="text-align: left;"><code>➤ min([1, 2], [0, 6])</code><br><code>[0, 2]</code></td>
+          </tr>
+          <tr class="odd">
+          <td style="text-align: right;">Maximum</td>
+          <td style="text-align: left;"><code>max(A, B)</code></td>
+          <td
+          style="text-align: left;"><code>➤ max([0, 10], [5, 6])</code><br><code>[5, 10]</code></td>
+          </tr>
+          </tbody>
+          </table>
+          <h2 id="full-precision-mode">Full Precision Mode</h2>
+          <p>Outward rounding is implemented over IEEE 754 double
+          precision floats (javascript's number type), so result
+          intervals are guaranteed to contain the true value that would
+          be obtained by computing the same expression over the reals
+          with infinite precision. For example, try the <a
+          href="https://0.30000000000000004.com/">famous</a> sum
+          <code>0.1 + 0.2</code> in the calculator. Interval arithmetic
+          computes an interval that is guaranteed to contain
+          <code>0.3</code>, even though <code>0.3</code> is not
+          representable as a double precision float.</p>
+          <p>When full precision mode is enabled:</p>
+          <ul>
+          <li>Numbers input by the user are interpreted as the smallest
+          interval that contains the IEEE 754 value closest to the input
+          decimal representation but where neither bounds are equal to
+          it</li>
+          <li>Output numbers are displayed with all available decimal
+          digits</li>
+          </ul>
+          <p>When full precision mode is disabled:</p>
+          <ul>
+          <li>Numbers input by the user are interpreted as the
+          degenerate interval (width zero) where both bounds are equal
+          to the IEEE 754 value closest to the input decimal
+          representation</li>
+          <li>Output numbers are displayed with a maximum of 4 decimal
+          digits</li>
+          </ul>
+          <h2 id="bugs">Bugs</h2>
+          <p>While I’ve been very careful, I’m sure there are still some
+          bugs in the calculator. Please <a
+          href="https://github.com/victorpoughon/interval-calculator">report
+          any issue on GitHub</a>.</p>
+          <h2 id="open-source">Open Source</h2>
+          <p><a
+          href="https://github.com/victorpoughon/interval-calculator">Interval
+          Calculator</a> and <a
+          href="https://github.com/victorpoughon/not-so-float">not-so-float</a>
+          (the engine powering the calculator) are open-source. If you
+          you like my open-source work, please consider <a
+          href="https://github.com/sponsors/victorpoughon">sponsoring me
+          on GitHub</a>. Thank you ❤️</p>
+        </article>
+        <script type="module" src="/src/main.ts"></script>
+    </body>
+</html>

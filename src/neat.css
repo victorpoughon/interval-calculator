@@ -1,0 +1,136 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    color-scheme: light dark;
+    --light: #fff;
+    --lesslight: #efefef;
+    --textoff: #cccccc;
+    --dark: #404040;
+    --moredark: #000;
+    --link: royalblue;
+    --bg-accent: #DDF1DD;
+    --bg-error: #f1dddd;
+
+    line-height: 1.5em;
+    font-family: system-ui, sans-serif;
+    font-size: 16px;
+    color: var(--dark);
+}
+
+h1 {
+    line-height: 1em;
+}
+
+button, input, textarea {
+    font-size: 1em; /* Override browser default font shrinking*/
+}
+
+input {
+    border: 1px solid var(--dark);
+    background-color: var(--lesslight);
+    border-radius: .25em;
+    padding: .5em;
+}
+
+pre {
+    background-color: var(--lesslight);
+    margin: 0.5em 0 0.5em 0;
+    padding: 0.5em;
+    overflow: auto;
+}
+
+code {
+    font-size: 0.8rem;
+    background-color: var(--lesslight);
+    padding: 0.2rem 0.2rem;
+}
+
+blockquote {
+    border-left: 0.25rem solid var(--dark);
+    padding-left: 1rem;
+}
+
+body {
+    background-color: var(--light);
+    margin: 0;
+    max-width: 750px;
+    padding: 0 20px 20px 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a {
+    outline: none;
+    color: var(--link);
+    font-weight: bold;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+button, .button, input[type=submit] {
+    display: inline-block;
+    background-color: var(--dark);
+    color: var(--light);
+    text-align: center;
+    padding: .5em;
+    border-radius: .25em;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.button a {
+    text-decoration: none;
+}
+
+button:hover, .button:hover, input[type=submit]:hover {
+    color: var(--lesslight);
+    background-color: var(--moredark);
+}
+
+/* Add a margin between side-by-side buttons */
+button + button, .button + .button, input[type=submit] + input[type=submit] {
+    margin-left: 1em;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.breathe {
+    margin-top: 3em;
+}
+
+input.center {
+    display: block;
+    margin-top: 1em;
+}
+
+/* Dark mode overrides (confusingly inverse) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --light: #222;
+        --lesslight: #333;
+        --dark: #eee;
+        --moredark: #fefefe;
+        --bg-accent: #0a4c53;
+        --bg-error: #530a0a;
+    }
+    /* This fixes an odd blue then white shadow on FF in dark mode */
+    *:focus {
+        outline: var(--light);
+        box-shadow: 0 0 0 .25em var(--link);
+    }
+    .button a {
+        color: var(--light);
+    }
+}
+

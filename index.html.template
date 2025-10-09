@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/favicon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Interval Calculator</title>
+    </head>
+    <body>
+        <header>
+            <h1>Interval Calculator</h1>
+            <div style="text-align: right">
+                — by <a href="https://victorpoughon.fr">Victor Poughon</a>
+                |
+                <a href="https://github.com/victorpoughon/interval-calculator"> GitHub</a>
+            </div>
+        </header>
+
+        <main>
+            <div id="input-box">
+                <label>Input: </label><input type="text" id="main-input" placeholder="" />
+                <button id="enter-button">➤</button>
+            </div>
+            <div id="main-display"></div>
+            <div id="toolbar">
+                <span
+                    ><label
+                        ><input type="checkbox" id="full-precision" /> Full precision</label
+                    ></span
+                >
+                <span><button id="clear-button">Clear</button></span>
+            </div>
+        </main>
+
+        <article>
+          $body$
+        </article>
+        <script type="module" src="/src/main.ts"></script>
+    </body>
+</html>

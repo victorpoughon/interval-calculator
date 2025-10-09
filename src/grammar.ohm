@@ -1,0 +1,50 @@
+IntervalCalculator {
+  Exp = AddExp
+
+  AddExp
+    = AddExp "+" MulExp     --add
+    | AddExp "-" MulExp     --sub
+    | MulExp
+  
+  MulExp
+    = MulExp "*" PowExp      --mul
+    | MulExp "/" PowExp      --div
+    | PowExp
+
+  PowExp
+	  = PowExp "^" UnionExp   --pow
+    | UnionExp
+
+  UnionExp
+    = UnionExp "U" Term    --union
+    | UnaryTerm
+    
+  UnaryTerm
+	  = "+" Term   --pos
+    | "-" Term    --neg
+    | Term
+
+  Term
+    = Interval
+    | "(" Exp ")"          --paren
+    | FunctionExp
+    | number
+    | identifier           --constant
+    | "∞"                  --infsymbol
+    
+  identifier = identifierFirstLetter (letter | digit)*
+ 
+  identifierFirstLetter
+    = ~"U" letter
+    | "∞"
+
+  FunctionExp
+    = identifier "(" ListOf<Exp, ","> ")"
+
+  Interval
+    = "[" Exp "," Exp "]"
+
+  number
+    = digit+ ("." digit*)? --leftside
+    | "." digit+           --rightside
+}
