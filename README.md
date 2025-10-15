@@ -138,7 +138,7 @@ GitHub](https://github.com/sponsors/victorpoughon). Thank you&nbsp;❤️
 
 ## Future work
 
-* Implement the "true inverse" of the square root: `sqinv(X) = sqrt(X) U -sqrt(X)`
+* Implement the "true inverse" of the square function: `sqinv(X) = sqrt(X) U -sqrt(X)`
 * Split full precision mode into two controls: input interpretation and display precision
 * Add `ans` variable (result of previous entry)
 * Add intersection operator or function
