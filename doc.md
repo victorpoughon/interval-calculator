@@ -7,7 +7,7 @@ Arithmetic](https://www.ime.usp.br/~montanhe/unions.pdf).
 An interval `[a, b]` represents the set of all numbers between and including a
 and b. An interval union: `[a, b] U [c, d]` is a disjoint set of intervals.
 
-Interval *union* arithmetic is an extension of regular interval arithmetic that
+Interval _union_ arithmetic is an extension of regular interval arithmetic that
 is vastly superior, mostly because it remains closed while supporting division
 by intervals containing zero:
 
@@ -96,6 +96,7 @@ bound. This design choice enables using arithmetic on interval bounds themselves
 |              Hull | `hull(A)`                | `➤ hull([1, 2] U [99, 100])`<br>`[1, 100]`              |
 |    Absolute value | `abs(A)`                 | `➤ abs([-10, 5])`<br>`[0, 10]`                          |
 |       Square root | `sqrt(A)`                | `➤ sqrt([9, 49])`<br>`[3, 7]`                           |
+|    Square Inverse | `sqinv(A)`               | `➤ sqinv([4, 64])`<br>`[-8, -2] U [2, 8]`               |
 | Natural logarithm | `log(A)`                 | `➤ log([0, 1])`<br>`[-∞, 0]`                            |
 |  Logarithm base 2 | `log2(A)`                | `➤ log2([64, 1024])`<br>`[6, 10]`                       |
 | Logarithm base 10 | `log10(A)`               | `➤ log10([0.0001, 1])`<br>`[-4, 0]`                     |
@@ -149,7 +150,6 @@ GitHub](https://github.com/sponsors/victorpoughon). Thank you&nbsp;❤️
 
 ## Future work
 
-* Implement the "true inverse" of the square function: `sqinv(X) = sqrt(X) U -sqrt(X)`
-* Split full precision mode into two controls: input interpretation and display precision
-* Add `ans` variable (result of previous entry)
-* Add intersection operator or function
+-   Split full precision mode into two controls: input interpretation and display precision
+-   Add `ans` variable (result of previous entry)
+-   Add intersection operator or function

@@ -64,6 +64,7 @@ const externalFunctions: Record<string, ExternalFunction> = {
     cos: fixedArity(1, nsf.ucos),
     sin: fixedArity(1, nsf.usin),
     tan: fixedArity(1, nsf.utan),
+    sqinv: fixedArity(1, nsf.sqinv),
 
     // Binary
     min: fixedArity(2, nsf.umin),

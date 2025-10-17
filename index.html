@@ -207,54 +207,60 @@
           style="text-align: left;"><code>➤ sqrt([9, 49])</code><br><code>[3, 7]</code></td>
           </tr>
           <tr class="odd">
+          <td style="text-align: right;">Square Inverse</td>
+          <td style="text-align: left;"><code>sqinv(A)</code></td>
+          <td
+          style="text-align: left;"><code>➤ sqinv([4, 64])</code><br><code>[-8, -2] U [2, 8]</code></td>
+          </tr>
+          <tr class="even">
           <td style="text-align: right;">Natural logarithm</td>
           <td style="text-align: left;"><code>log(A)</code></td>
           <td
           style="text-align: left;"><code>➤ log([0, 1])</code><br><code>[-∞, 0]</code></td>
           </tr>
-          <tr class="even">
+          <tr class="odd">
           <td style="text-align: right;">Logarithm base 2</td>
           <td style="text-align: left;"><code>log2(A)</code></td>
           <td
           style="text-align: left;"><code>➤ log2([64, 1024])</code><br><code>[6, 10]</code></td>
           </tr>
-          <tr class="odd">
+          <tr class="even">
           <td style="text-align: right;">Logarithm base 10</td>
           <td style="text-align: left;"><code>log10(A)</code></td>
           <td
           style="text-align: left;"><code>➤ log10([0.0001, 1])</code><br><code>[-4, 0]</code></td>
           </tr>
-          <tr class="even">
+          <tr class="odd">
           <td style="text-align: right;">Exponential</td>
           <td style="text-align: left;"><code>exp(A)</code></td>
           <td
           style="text-align: left;"><code>➤ exp([-∞, 0] U [1, 2])</code><br><code>[0, 1] U [2.718, 7.389]</code></td>
           </tr>
-          <tr class="odd">
+          <tr class="even">
           <td style="text-align: right;">Cosine</td>
           <td style="text-align: left;"><code>cos(A)</code></td>
           <td
           style="text-align: left;"><code>➤ cos([pi/3, pi])</code><br><code>[-1, 0.5]</code></td>
           </tr>
-          <tr class="even">
+          <tr class="odd">
           <td style="text-align: right;">Sine</td>
           <td style="text-align: left;"><code>sin(A)</code></td>
           <td
           style="text-align: left;"><code>➤ sin([pi/6, 5*pi/6])</code><br><code>[0.5, 1]</code></td>
           </tr>
-          <tr class="odd">
+          <tr class="even">
           <td style="text-align: right;">Tangent</td>
           <td style="text-align: left;"><code>tan(A)</code></td>
           <td
           style="text-align: left;"><code>➤ tan([pi/3, 2*pi/3])</code><br><code>[-∞, -1.732] U [1.732, +∞]</code></td>
           </tr>
-          <tr class="even">
+          <tr class="odd">
           <td style="text-align: right;">Minimum</td>
           <td style="text-align: left;"><code>min(A, B)</code></td>
           <td
           style="text-align: left;"><code>➤ min([1, 2], [0, 6])</code><br><code>[0, 2]</code></td>
           </tr>
-          <tr class="odd">
+          <tr class="even">
           <td style="text-align: right;">Maximum</td>
           <td style="text-align: left;"><code>max(A, B)</code></td>
           <td
@@ -307,6 +313,14 @@
           you like my open-source work, please consider <a
           href="https://github.com/sponsors/victorpoughon">sponsoring me
           on GitHub</a>. Thank you ❤️</p>
+          <h2 id="future-work">Future work</h2>
+          <ul>
+          <li>Split full precision mode into two controls: input
+          interpretation and display precision</li>
+          <li>Add <code>ans</code> variable (result of previous
+          entry)</li>
+          <li>Add intersection operator or function</li>
+          </ul>
         </article>
         <script type="module" src="/src/main.ts"></script>
     </body>
