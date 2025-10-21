@@ -73,6 +73,8 @@ describe("calculator tests", () => {
         expect("[1, [2, 3]]", "[1, 3]");
 
         expect("10+3*2", "[16, 16]");
+
+        expect("hull([1, 2] U [10, 11])", "[1, 11]");
     });
 
     it("invalid syntax", () => {

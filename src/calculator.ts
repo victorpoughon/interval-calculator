@@ -64,9 +64,9 @@ function isStringInteger(str: string): boolean {
 
 // Construct a union from a single number
 function unionNumber(val: number, fullPrecision: boolean): nsf.Union {
-    if (val === 0) return nsf.union([nsf.inter(0, 0)]);
-    else if (fullPrecision) return nsf.union([nsf.inter(nsf.prev(val), nsf.next(val))]);
-    else return nsf.union([nsf.inter(val, val)]);
+    if (val === 0) return nsf.single(0, 0);
+    else if (fullPrecision) return nsf.bounded(val);
+    else return nsf.single(val, val);
 }
 
 function makeSemantics(fullPrecision: boolean): IntervalCalculatorSemantics {
@@ -78,7 +78,7 @@ function makeSemantics(fullPrecision: boolean): IntervalCalculatorSemantics {
             _: ohm.TerminalNode,
             arg2: ohm.NonterminalNode
         ): nsf.Union {
-            return nsf.uadd(evalUnion(arg0), evalUnion(arg2));
+            return nsf.add(evalUnion(arg0), evalUnion(arg2));
         },
 
         AddExp_sub(
@@ -86,7 +86,7 @@ function makeSemantics(fullPrecision: boolean): IntervalCalculatorSemantics {
             _: ohm.TerminalNode,
             arg2: ohm.NonterminalNode
         ): nsf.Union {
-            return nsf.usub(evalUnion(arg0), evalUnion(arg2));
+            return nsf.sub(evalUnion(arg0), evalUnion(arg2));
         },
 
         MulExp_mul(
@@ -94,7 +94,7 @@ function makeSemantics(fullPrecision: boolean): IntervalCalculatorSemantics {
             _: ohm.TerminalNode,
             arg2: ohm.NonterminalNode
         ): nsf.Union {
-            return nsf.umul(evalUnion(arg0), evalUnion(arg2));
+            return nsf.mul(evalUnion(arg0), evalUnion(arg2));
         },
 
         MulExp_div(
@@ -102,7 +102,7 @@ function makeSemantics(fullPrecision: boolean): IntervalCalculatorSemantics {
             _: ohm.TerminalNode,
             arg2: ohm.NonterminalNode
         ): nsf.Union {
-            return nsf.udiv(evalUnion(arg0), evalUnion(arg2));
+            return nsf.div(evalUnion(arg0), evalUnion(arg2));
         },
 
         PowExp_pow(
@@ -114,10 +114,10 @@ function makeSemantics(fullPrecision: boolean): IntervalCalculatorSemantics {
             // TODO also defer to powInt when exponent is a degenerate interval and integer
             if (isStringInteger(exponent.sourceString)) {
                 const exponentNumber = parseNumber(exponent.sourceString);
-                return nsf.upowInt(baseUnion, exponentNumber);
+                return nsf.powInt(baseUnion, exponentNumber);
             } else {
                 const exponentUnion = evalUnion(exponent);
-                return nsf.upow(baseUnion, exponentUnion);
+                return nsf.pow(baseUnion, exponentUnion);
             }
         },
 
@@ -130,7 +130,7 @@ function makeSemantics(fullPrecision: boolean): IntervalCalculatorSemantics {
         },
 
         UnaryTerm_neg(_: ohm.TerminalNode, arg1: ohm.NonterminalNode): nsf.Union {
-            return nsf.uneg(evalUnion(arg1));
+            return nsf.neg(evalUnion(arg1));
         },
 
         UnaryTerm_pos(_: ohm.TerminalNode, arg1: ohm.NonterminalNode): nsf.Union {
@@ -156,7 +156,7 @@ function makeSemantics(fullPrecision: boolean): IntervalCalculatorSemantics {
         },
 
         Term_infsymbol(_: ohm.NonterminalNode): nsf.Union {
-            return nsf.union([nsf.FULL]);
+            return nsf.FULL;
         },
 
         FunctionExp(
@@ -206,7 +206,7 @@ function makeSemantics(fullPrecision: boolean): IntervalCalculatorSemantics {
             const lo = leftUnion.intervals[0].lo;
             const hi = rightUnion.intervals[rightUnion.intervals.length - 1].hi;
 
-            return nsf.union([nsf.inter(lo, hi)]);
+            return nsf.single(lo, hi);
         },
 
         number(digits: ohm.NonterminalNode): nsf.Union {
