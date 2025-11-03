@@ -18,7 +18,7 @@
     "vite": "^7.1.7"
   },
   "dependencies": {
-    "not-so-float": "^2.0.0",
+    "not-so-float": "^2.4.0",
     "ohm-js": "^17.2.1",
     "ts-pattern": "^5.8.0"
   }
