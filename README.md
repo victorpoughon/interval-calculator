@@ -142,3 +142,4 @@ GitHub](https://github.com/sponsors/victorpoughon). Thank you&nbsp;❤️
 * Add `ans` variable (result of previous entry)
 * Add intersection operator or function
 * Make precedence of U more intuitive
+* Support inputing the empty union
