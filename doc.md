@@ -104,6 +104,9 @@ bound. This design choice enables using arithmetic on interval bounds themselves
 |            Cosine | `cos(A)`                 | `➤ cos([pi/3, pi])`<br>`[-1, 0.5]`                      |
 |              Sine | `sin(A)`                 | `➤ sin([pi/6, 5*pi/6])`<br>`[0.5, 1]`                   |
 |           Tangent | `tan(A)`                 | `➤ tan([pi/3, 2*pi/3])`<br>`[-∞, -1.732] U [1.732, +∞]` |
+|            Arccos | `acos(A)`                | `➤ acos([-1/2, 1/2])`<br>`[1.047, 2.094]`               |
+|            Arcsin | `asin(A)`                | `➤ asin([0, 1])`<br>`[0, 1.571]`                        |
+|            Arctan | `atan(A)`                | `➤ atan([-10, 2])`<br>`[-1.471, 1.107]`                 |
 |           Minimum | `min(A, B)`              | `➤ min([1, 2], [0, 6])`<br>`[0, 2]`                     |
 |           Maximum | `max(A, B)`              | `➤ max([0, 10], [5, 6])`<br>`[5, 10]`                   |
 

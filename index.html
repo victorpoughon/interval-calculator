@@ -255,12 +255,30 @@
           style="text-align: left;"><code>➤ tan([pi/3, 2*pi/3])</code><br><code>[-∞, -1.732] U [1.732, +∞]</code></td>
           </tr>
           <tr class="odd">
+          <td style="text-align: right;">Arccos</td>
+          <td style="text-align: left;"><code>acos(A)</code></td>
+          <td
+          style="text-align: left;"><code>➤ acos([-1/2, 1/2])</code><br><code>[1.047, 2.094]</code></td>
+          </tr>
+          <tr class="even">
+          <td style="text-align: right;">Arcsin</td>
+          <td style="text-align: left;"><code>asin(A)</code></td>
+          <td
+          style="text-align: left;"><code>➤ asin([0, 1])</code><br><code>[0, 1.571]</code></td>
+          </tr>
+          <tr class="odd">
+          <td style="text-align: right;">Arctan</td>
+          <td style="text-align: left;"><code>atan(A)</code></td>
+          <td
+          style="text-align: left;"><code>➤ atan([-10, 2])</code><br><code>[-1.471, 1.107]</code></td>
+          </tr>
+          <tr class="even">
           <td style="text-align: right;">Minimum</td>
           <td style="text-align: left;"><code>min(A, B)</code></td>
           <td
           style="text-align: left;"><code>➤ min([1, 2], [0, 6])</code><br><code>[0, 2]</code></td>
           </tr>
-          <tr class="even">
+          <tr class="odd">
           <td style="text-align: right;">Maximum</td>
           <td style="text-align: left;"><code>max(A, B)</code></td>
           <td
@@ -320,6 +338,8 @@
           <li>Add <code>ans</code> variable (result of previous
           entry)</li>
           <li>Add intersection operator or function</li>
+          <li>Make precedence of U more intuitive</li>
+          <li>Support inputing the empty union</li>
           </ul>
         </article>
         <script type="module" src="/src/main.ts"></script>

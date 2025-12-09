@@ -85,6 +85,7 @@ bound. This design choice enables using arithmetic on interval bounds themselves
 |              Hull | `hull(A)`                | `➤ hull([1, 2] U [99, 100])`<br>`[1, 100]`              |
 |    Absolute value | `abs(A)`                 | `➤ abs([-10, 5])`<br>`[0, 10]`                          |
 |       Square root | `sqrt(A)`                | `➤ sqrt([9, 49])`<br>`[3, 7]`                           |
+|    Square Inverse | `sqinv(A)`               | `➤ sqinv([4, 64])`<br>`[-8, -2] U [2, 8]`               |
 | Natural logarithm | `log(A)`                 | `➤ log([0, 1])`<br>`[-∞, 0]`                            |
 |  Logarithm base 2 | `log2(A)`                | `➤ log2([64, 1024])`<br>`[6, 10]`                       |
 | Logarithm base 10 | `log10(A)`               | `➤ log10([0.0001, 1])`<br>`[-4, 0]`                     |
@@ -92,6 +93,9 @@ bound. This design choice enables using arithmetic on interval bounds themselves
 |            Cosine | `cos(A)`                 | `➤ cos([pi/3, pi])`<br>`[-1, 0.5]`                      |
 |              Sine | `sin(A)`                 | `➤ sin([pi/6, 5*pi/6])`<br>`[0.5, 1]`                   |
 |           Tangent | `tan(A)`                 | `➤ tan([pi/3, 2*pi/3])`<br>`[-∞, -1.732] U [1.732, +∞]` |
+|            Arccos | `acos(A)`                | `➤ acos([-1/2, 1/2])`<br>`[1.047, 2.094]`               |
+|            Arcsin | `asin(A)`                | `➤ asin([0, 1])`<br>`[0, 1.571]`                        |
+|            Arctan | `atan(A)`                | `➤ atan([-10, 2])`<br>`[-1.471, 1.107]`                 |
 |           Minimum | `min(A, B)`              | `➤ min([1, 2], [0, 6])`<br>`[0, 2]`                     |
 |           Maximum | `max(A, B)`              | `➤ max([0, 10], [5, 6])`<br>`[5, 10]`                   |
 
@@ -138,8 +142,8 @@ GitHub](https://github.com/sponsors/victorpoughon). Thank you&nbsp;❤️
 
 ## Future work
 
-* Split full precision mode into two controls: input interpretation and display precision
-* Add `ans` variable (result of previous entry)
-* Add intersection operator or function
-* Make precedence of U more intuitive
-* Support inputing the empty union
+-   Split full precision mode into two controls: input interpretation and display precision
+-   Add `ans` variable (result of previous entry)
+-   Add intersection operator or function
+-   Make precedence of U more intuitive
+-   Support inputing the empty union
